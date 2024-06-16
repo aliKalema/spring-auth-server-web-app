@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right-style: hidden;
+}
+
+app-employees{
+  flex-direction: column;
+  flex-grow: 1 !important;
+  display: flex;
+}
+
+.show-border .mat-mdc-tab-label-container{
+  border-bottom: 1px solid #b3b3b3 !important;
+}

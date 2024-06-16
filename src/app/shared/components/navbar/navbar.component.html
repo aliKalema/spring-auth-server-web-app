@@ -1,0 +1,117 @@
+<nav class="border-gray-200 py-2.5 rounded ">
+  <div class="container flex items-center justify-between min-w-full">
+    <div class="container flex items-center">
+      <div class="mx-3">
+        <button (click)="toggleSideNav()" mat-mini-fab class="border border-slate-700 text-slate-700 bg-slate-200">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <div class="flex container items-center w-auto">
+          <mat-icon class="text-slate-500 text-base">home</mat-icon>
+          <div class="flex container items-center w-auto " *ngFor="let path of currentLocation!.path; let i = index">
+            <span class="text-base text-grey-300 mx-1"> / </span>
+            <span class="text-xs text-grey-200 font-semibold" [ngClass]="{'text-slate-700': i==(currentLocation!.path!.length!)-1}">{{path}}</span>
+          </div>
+        </div>
+        <div class="text-base slate-500 font-semibold -mt-1 uppercase">
+          {{currentLocation.title}}
+        </div>
+      </div>
+    </div>
+    <div class="container w-auto flex items-center justify-end">
+
+      <button matTooltip="APPS" [matMenuTriggerFor]="apps" class="mr-2 p-1 container items-center justify-center flex bg-inherit outline-none transform active:scale-75 transition-transform" >
+        <mat-icon class="h-6 w-6 text-slate-500">apps</mat-icon>
+      </button>
+      <mat-menu #apps="matMenu" class="">
+        <div class="w-64 bg-slate-50 flex justify-center p-8">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-md overflow-hidden h-28">
+              <img  src="assets/img/personnel.jpg" alt="">
+              <div class="w-full flex justify-center -m-5 text-white font-semibold bg-green-300">
+                <div class="text-xs">PERSONNEL</div>
+              </div>
+            </div>
+            <div class="rounded-md overflow-hidden h-28">
+              <img  src="assets/img/personnel.jpg" alt="">
+              <div class="w-full flex justify-center -m-5 text-white font-semibold bg-green-300">
+                <div class="text-xs">PERSONNEL</div>
+              </div>
+            </div>
+            <div class="rounded-md overflow-hidden h-28">
+              <img  src="assets/img/personnel.jpg" alt="">
+              <div class="w-full flex justify-center -m-5 text-white font-semibold bg-green-300">
+                <div class="text-xs">PERSONNEL</div>
+              </div>
+            </div>
+            <div class="rounded-md overflow-hidden h-28">
+              <img  src="assets/img/personnel.jpg" alt="">
+              <div class="w-full flex justify-center -m-5 text-white font-semibold bg-green-300">
+                <div class="text-xs">PERSONNEL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-menu>
+
+      <button type="button" matTooltip="SETTINGS" [matMenuTriggerFor]="settings" class="mr-2 p-1 container items-center justify-center flex bg-inherit outline-none transform active:scale-75 transition-transform">
+        <mat-icon class="h-6 w-6 text-slate-500">settings</mat-icon>
+      </button>
+      <mat-menu #settings="matMenu">
+
+      </mat-menu>
+
+      <button matTooltip="NOTIFICATIONS" [matMenuTriggerFor]="notification" class="mr-2 p-1 container items-center justify-center flex bg-inherit outline-none transform active:scale-75 transition-transform" >
+        <mat-icon class="h-6 w-6 text-slate-500">notifications</mat-icon>
+      </button>
+      <mat-menu #notification="matMenu">
+
+      </mat-menu>
+
+      <button [matMenuTriggerFor]="account" matTooltip="ACCOUNT" class="mr-2 p-1 container items-center justify-center flex bg-inherit outline-none transform active:scale-75 transition-transform">
+        <span class="w-8 h-8 flex container rounded-full bg-blue-500 text-white text-xl items-center justify-center">
+          {{profile.firstName.charAt(0) || ''}}
+        </span>
+      </button>
+      <mat-menu class="bg-slate-50" #account="matMenu" >
+        <div class="w-64 h-full m-3">
+          <div class="h-48 items-center container w-full flex justify-center">
+            <div class="items-center">
+              <div class="flex justify-center">
+                <div class="w-16 h-16 flex container rounded-full font-serif bg-blue-500 text-white text-4xl items-center justify-center">
+                  {{profile.firstName.charAt(0) || ''}}
+                </div>
+              </div>
+            <div class="flex justify-center text-slate-700 font-bold">
+              <span class="mr-2">{{profile.firstName}}</span>
+<!--              <span>{{profile.lastName}}</span>-->
+            </div>
+<!--            <span class="text-slate-700 font-semibold"> {{profile.email}} </span>-->
+            <div class="my-2 justify-center flex">
+              <button  color="primary" mat-button class="text-blue-600">
+                Edit Profile
+              </button>
+            </div>
+            </div>
+        </div>
+          <mat-divider></mat-divider>
+          <div class="bg-slate-50">
+            <mat-list class="mt-6">
+              <mat-list-item (click)="logout()" class="group/item hover:bg-slate-200 transform active:scale-75 transition-transform">
+                <mat-icon matListItemIcon>logout</mat-icon>
+                <div class="font-semibold text-slate-600 font-serif text-xl" matListItemTitle>Logout</div>
+              </mat-list-item>
+              <mat-list-item class="group/item hover:bg-slate-200 transform active:scale-75 transition-transform">
+                <mat-icon matListItemIcon>tune</mat-icon>
+                <div class="font-semibold text-slate-600 font-serif text-xl" matListItemTitle>Preferences</div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </mat-menu>
+
+    </div>
+  </div>
+</nav>
+

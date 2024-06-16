@@ -1,0 +1,508 @@
+ <div class="bg-gray-50" style="max-width: 64rem; !important; margin: auto;" >
+  <mat-stepper class="bg-gray-50" labelPosition="bottom" [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>
+        <span class="text-xs text-slate-700 font-semibold">Personal <br> Info</span>
+      </ng-template>
+      <div class="container flex items-center">
+        <div class="w-24 h-24 ">
+          <div class="mb-4 w-[5rem] h-[5rem]" *ngIf="image">
+            <img [src]="image.url" class="w-full h-full rounded-full" alt="">
+          </div>
+          <div class="mb-4 flex w-[5rem] h-[5rem] border-2 rounded-full container mx-auto items-center justify-center" *ngIf="!image">
+            <mat-icon class="text-slate-300 scale-150">perm_media</mat-icon>
+          </div>
+        </div>
+        <div class="mx-4">
+          <input id="large_size" type="file" #selectFile (change)="onFileSelected($event)" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100"/>
+        </div>
+      </div>
+
+      <form [formGroup]="firstFormGroup">
+        <div class="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-5">
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">First Name</label>
+            <input type="text"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Joe">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Last Name</label>
+            <input type="email"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe">
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">Other Names</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John">
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">Phone</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="+254734*******">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Company Email</label>
+            <input type="email"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john@email.com">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Personal Email</label>
+            <input type="email"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john@email.com">
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">ID Number</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123456">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Gender</label>
+            <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              <option  value="male">Male</option>
+              <option  value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Date of Birth</mat-label>
+              <input matInput class="" [matDatepicker]="dob" placeholder="MM/DD/YYYY">
+              <mat-datepicker-toggle matIconSuffix [for]="dob"></mat-datepicker-toggle>
+              <mat-datepicker #dob></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            <mat-form-field style="width: 100%">
+              <mat-label>Citizenship</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                <mat-optgroup [label]="group.letter">
+                  @for (name of group.names; track name) {
+                <mat-option [value]="name">{{name}}</mat-option>
+                }
+                </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="container items-center bg-red-400">
+            <mat-checkbox class="items-center container"  color="primary">
+              Person of Disability
+            </mat-checkbox>
+          </div>
+        </div>
+
+
+<!--        <div class="text-slate-600 text-lg font-medium my-4 underline">-->
+<!--          Person Of Disability-->
+<!--        </div>-->
+
+<!--        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">-->
+<!--          <div class="container items-center bg-red-400">-->
+<!--            <mat-checkbox class="example-margin"  color="primary">-->
+<!--              Person of Disability-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+
+<!--          @if(personOfDisability){-->
+<!--            <div class="container items-center">-->
+<!--              <label  class="block mb-2 text-sm font-medium text-gray-900 ">Type(s) of Disability</label>-->
+<!--              <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">-->
+<!--                <option  value="male">Visual Impairment</option>-->
+<!--                <option  value="female">Hearing Impairment</option>-->
+<!--                <option value="other">Mobility/Orthopedic Impairment</option>-->
+<!--                <option value="other">Neurodivergent (e.g., Autism, ADHD)</option>-->
+<!--                <option value="other">Chronic Health Condition</option>-->
+<!--                <option value="other">Mental Health Condition</option>-->
+<!--                <option value="other">Mobility/Orthopedic Impairment</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--            <div class="">-->
+<!--            <mat-form-field class="w-full">-->
+<!--             <mat-label>Specify any accommodations you may need</mat-label>-->
+<!--              <textarea matInput placeholder="Ex. It makes me feel..."></textarea>-->
+<!--            </mat-form-field>-->
+<!--            </div>-->
+
+<!--            <div class="">-->
+<!--              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload Certificate</label>-->
+<!--              <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">-->
+<!--            </div>-->
+<!--          }-->
+<!--        </div>-->
+
+        <div class="">
+          <div class="text-slate-600 text-lg font-medium my-4 underline">
+            Next Of Kins
+          </div>
+          <div class="w-full" formArrayName="nextOfKinList">
+            @for (nextOfKin of nextOfKinList.controls; track nextOfKin; let i = $index;) {
+              <div class="w-full flex" [formGroupName]="i">
+                  <div class="mb-2 mr-2 w-1/4">
+                    <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="First Name">
+                  </div>
+                  <div class="mb-2 mr-2 w-1/4">
+                    <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Last Name">
+                  </div>
+                  <div class="mb-2 mr-2 w-1/4">
+                    <input type="text"  class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Phone">
+                  </div>
+                  <div class="mb-2 flex  items-center w-1/4">
+                    <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Relationship">
+                    <button type="button" (click)="removeNextOfKin(i)" class="float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                      <mat-icon class="h-6 w-6">remove</mat-icon>
+                    </button>
+                    @if (i === nextOfKinList.controls.length-1){
+                      <button type="button" (click)="addNextOfKin()" class="float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                        <mat-icon class="h-6 w-6">add</mat-icon>
+                      </button>
+                    }
+                  </div>
+              </div>
+            }
+          </div>
+        </div>
+      </form>
+
+      <div class="mt-4">
+        <button mat-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>
+        <span class="text-xs text-slate-700 font-semibold">Educational & <br> Work History</span>
+      </ng-template>
+      <form [formGroup]="secondFormGroup">
+        <div class="">
+          <div class="text-slate-600 font-medium text-lg my-4 underline">
+            Education Details
+          </div>
+          <div class="w-full" formArrayName="workHistoryList">
+            @for (workHistory of workHistoryList.controls; track workHistory; let i = $index;) {
+              <div class="w-full grid grid-cols-5 gap-3" [formGroupName]="i">
+                <div class="mb-2 ">
+                  <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Certification">
+                </div>
+                <div class="mb-2">
+                  <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Institution">
+                </div>
+                <div class="mb-2">
+                  <input type="text"  class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Join Date">
+                </div>
+                <div class="mb-2">
+                  <input type="text"  class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Graduation Date">
+                </div>
+                <div class="mb-2 flex  items-center">
+                  <input type="text" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500" placeholder="Grade">
+                  <button type="button" (click)="removeWorkHistory(i)" class="float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                    <mat-icon class="h-6 w-6">remove</mat-icon>
+                  </button>
+                  @if (i === workHistoryList.controls.length-1){
+                    <button type="button" (click)="addWorkHistory()" class="float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                      <mat-icon class="h-6 w-6">add</mat-icon>
+                    </button>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="">
+          <div class="text-slate-600 font-medium text-lg my-4 underline">
+            Work History
+          </div>
+          <div class="w-full" formArrayName="workHistoryList">
+            @for (workHistory of workHistoryList.controls; track workHistory; let i = $index;) {
+            <div class="flex container items-center mb-3 ">
+              <div class="flex flex-col w-full">
+              <div class="w-full grid grid-cols-4 gap-3 container items-center">
+                <div class="mb-2 ">
+                  <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Employer">
+                </div>
+                <div class="mb-2">
+                    <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Designation">
+                </div>
+                <div class="custom-input-style">
+                  <mat-form-field  style="width: 100%">
+                    <mat-label>From</mat-label>
+                    <input matInput  [matDatepicker]="from" placeholder="MM/DD/YYYY">
+                    <mat-datepicker-toggle matSuffix [for]="from" ></mat-datepicker-toggle>
+                    <mat-datepicker #from></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="custom-input-style">
+                  <mat-form-field style="width: 100%">
+                    <mat-label>To</mat-label>
+                    <input matInput [matDatepicker]="to" placeholder="MM/DD/YYYY">
+                    <mat-datepicker-toggle matIconSuffix [for]="to"></mat-datepicker-toggle>
+                    <mat-datepicker #to></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="" [formGroupName]="i">
+                <div class="mb-2 flex  items-center w-full">
+                  <mat-form-field class="w-full">
+                    <mat-label>Responsibilities</mat-label>
+                    <mat-chip-grid #chipGrid aria-label="Enter Responsibility"  >
+                      @for (responsibility of getResponsibilities(i).controls; let j= $index; track responsibility) {
+                        <mat-chip-row (removed)="removeResponsibility(i, j)">
+                          {{responsibility.value}}
+                          <button matChipRemove aria-label="'remove ' + keyword">
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip-row>
+                      }
+                    </mat-chip-grid>
+                    <input placeholder="New Responsibility..."[matChipInputFor]="chipGrid" (matChipInputTokenEnd)="addResponsibility($event, i)"/>
+                  </mat-form-field>
+                </div>
+              </div>
+              </div>
+              <div class="flex flex-col">
+                <button type="button" (click)="removeWorkHistory(i)" class="float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                  <mat-icon class="h-6 w-6">remove</mat-icon>
+                </button>
+                @if (i === workHistoryList.controls.length-1){
+                  <button type="button" (click)="addWorkHistory()" class="mt-1 float-right mx-1 p2 w-8 h-8 container items-center justify-center flex bg-white border border-slate-400 text-slate-400 rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+                    <mat-icon class="h-6 w-6">add</mat-icon>
+                  </button>
+                }
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup"><ng-template matStepLabel><span class="text-xs text-slate-700 font-semibold">Job <br> Details</span></ng-template>
+      <form [formGroup]="thirdFormGroup">
+        <div class="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-4">
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Employee Number</label>
+            <input type="text"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Joe">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Employement Type</label>
+            <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              <option  value="male">Full Time</option>
+              <option  value="female">Contract</option>
+              <option value="other">Part Time</option>
+            </select>
+          </div>
+
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>End of Contract</mat-label>
+              <input matInput [matDatepicker]="eoc" placeholder="MM/DD/YYYY">
+              <mat-datepicker-toggle matIconSuffix [for]="eoc"></mat-datepicker-toggle>
+              <mat-datepicker #eoc></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Date of Join</mat-label>
+              <input matInput [matDatepicker]="doj" placeholder="MM/DD/YYYY">
+              <mat-datepicker-toggle matIconSuffix [for]="doj"></mat-datepicker-toggle>
+              <mat-datepicker #doj></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Department</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Job Title</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Manager</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            <mat-checkbox class="example-margin"  color="primary">
+              Enable Portal Access
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="mb-2 flex  items-center w-full">
+            <mat-form-field class="w-full">
+              <mat-label>Responsibilities</mat-label>
+              <mat-chip-grid #chipGrid aria-label="Enter Responsibility"  >
+                @for (responsibility of getJobResponsibilities().controls; let i= $index; track responsibility) {
+                  <mat-chip-row (removed)="removeJobResponsibility(i)">
+                    {{responsibility.value}}
+                    <button matChipRemove aria-label="'remove ' + keyword">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip-row>
+                }
+              </mat-chip-grid>
+              <input placeholder="New Responsibility..."[matChipInputFor]="chipGrid" (matChipInputTokenEnd)="addJobResponsibility($event)"/>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </form>
+      <div class="mt-4">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="forthFormGroup">
+      <ng-template matStepLabel>
+      <span class="text-xs text-slate-700 font-semibold">Payment <br> Details</span>
+      </ng-template>
+      <form [formGroup]="forthFormGroup">
+        <div class="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-4">
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Payment Currency</label>
+            <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              <option  value="male">KSH (kenya)</option>
+              <option  value="female">TSH (Tanzania)</option>
+              <option value="other">USH (Uganda)</option>
+            </select>
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Payment Frequency</label>
+            <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              <option  value="male">Daily</option>
+              <option  value="female">Weekly</option>
+              <option value="other">Bi-Weekly</option>
+              <option  value="female">Monthly</option>
+            </select>
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">KRA pin</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">NHIF No.</label>
+            <input type="email"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="0012">
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">NSSF No</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="+254734*******">
+          </div>
+
+          <div class="">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Payment Method</label>
+            <select  class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              <option  value="male">Cash</option>
+              <option  value="female">M-pesa</option>
+              <option value="other">Bank</option>
+            </select>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Bank</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
+            <mat-form-field style="width: 100%">
+              <mat-label>Branch</mat-label>
+              <input type="text" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">Bank Account No</label>
+            <input type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="+254734*******">
+          </div>
+
+
+        </div>
+
+      </form>
+
+      <div class="mt-4">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button> Submit </button>
+      </div>
+    </mat-step>
+
+  </mat-stepper>
+ </div>

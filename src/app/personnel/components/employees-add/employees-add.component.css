@@ -1,0 +1,8 @@
+.custom-input-style .mat-input-element {
+  border: none; /* Remove the default border */
+  outline: none; /* Remove the default outline */
+  background: none; /* Remove the default background */
+  box-shadow: none; /* Remove the default box shadow */
+  color: inherit; /* Use the inherit color */
+  font-size: inherit; /* Use the inherit font size */
+}

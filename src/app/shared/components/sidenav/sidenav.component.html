@@ -1,0 +1,78 @@
+<div class="h-full p-3">
+  <div class="flex flex-col items-center h-full text-white bg-gradient-to-b from-zinc-700 via-slate-600 to-slate-900 rounded-lg" [ngClass]="{'w-16': isMinimized, 'w-60': !isMinimized}">
+    <a class="flex items-center my-8" [ngClass]="{'justify-center':isMinimized,'w-full px-3':!isMinimized}">
+      <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+      </svg>
+      <span *ngIf="!isMinimized" class="ml-2 text-sm font-bold">The App</span>
+    </a>
+
+    <hr class="text-zinc-50 p-1 w-[90%]">
+
+    <div  class="w-full relative" [ngClass]="{'justify-center': isMinimized, 'w-full px-3 ': !isMinimized}">
+      <div  class="flex flex-col items-center mt-3 pb-12" [ngClass]="{'w-full': isMinimized, '':!isMinimized}">
+        <ng-container *ngFor="let link of links">
+          <a  [routerLink]="link.url" class="flex items-center h-12 mt-2 rounded transition duration-200 ease-in-out hover:bg-zinc-500" [ngClass]="{'justify-center w-12': isMinimized, 'w-full px-3': !isMinimized}" routerLinkActive="bg-blue-600 active-hover">
+            <mat-icon class="w-6 h-6 stroke-current">{{ link.icon }}</mat-icon>
+            <span class="ml-2 text-sm font-medium" *ngIf="!isMinimized">{{ link.title }}</span>
+          </a>
+
+          <!--        <a *ngIf="link.children && link.children.length>0" (click)="toggleExpanded(link)" class="flex items-center h-12 mt-2 rounded hover:bg-zinc-500 hover:text-gray-300 relative" [ngClass]="{'justify-center w-12': isMinimized, 'w-full px-3': !isMinimized}" routerLinkActive="bg-zinc-500">-->
+          <!--          <mat-icon class="w-6 h-6 stroke-current">{{ link.icon }}</mat-icon>-->
+          <!--          <span class="ml-2 text-sm font-medium" *ngIf="!isMinimized">{{ link.title }}</span>-->
+          <!--          <ng-container *ngIf="!isMinimized">-->
+          <!--            <mat-icon  class="ml-auto absolute right-2" [ngClass]="{'rotate-180': link.expanded}">expand_more</mat-icon>-->
+          <!--          </ng-container>-->
+          <!--        </a>-->
+
+          <!--        <div *ngIf="link.children && link.expanded" class="w-full mt-2" [ngClass]="{'pl-0': isMinimized, 'ml-12 pl-2 border-l border-gray-500': !isMinimized}">-->
+          <!--          <div class="relative"*ngFor="let childLink of link.children">-->
+          <!--            <a [routerLink]="childLink.url" class="flex items-center h-12 mb-1 rounded hover:bg-gray-600 hover:text-gray-300" [ngClass]="{'justify-center w-12 ml-[8px]': isMinimized, 'w-36 ml-2 px-2': !isMinimized}" routerLinkActive="bg-zinc-500">-->
+          <!--              <mat-icon class="w-6 h-6 stroke-current">{{ childLink.icon }}</mat-icon>-->
+          <!--              <span class="ml-2 text-xs font-medium" *ngIf="!isMinimized">{{ childLink.title }}</span>-->
+          <!--            </a>-->
+          <!--          </div>-->
+          <!--        </div>-->
+        </ng-container>
+      </div>
+    </div >
+
+    <!--    <ng-scrollbar class="virtual-scroll" thumbClass="white-scrollbars">-->
+    <!--      <div class="w-full relative" [ngClass]="{'justify-center': isMinimized, 'w-full px-3 ': !isMinimized}">-->
+    <!--        <cdk-virtual-scroll-viewport scrollViewport itemSize="50" class="example-viewport">-->
+    <!--          <div class="flex flex-col items-center mt-3 border-t border-gray-700 pb-12" [ngClass]="{'w-full': isMinimized, '':!isMinimized}">-->
+    <!--        <div *ngFor="let link of links">-->
+    <!--          <a *ngIf="!(link.children) || !(link.children.length>0)" [routerLink]="link.url" class="flex items-center h-12 mt-2 rounded hover:bg-gray-600 hover:text-gray-300" [ngClass]="{'justify-center w-12': isMinimized, 'w-full px-3': !isMinimized}" routerLinkActive="text-white bg-gray-700 border-solid border border-blue-100">-->
+    <!--            <mat-icon class="w-6 h-6 stroke-current">{{ link.icon }}</mat-icon>-->
+    <!--            <span class="ml-2 text-sm font-medium" *ngIf="!isMinimized">{{ link.title }}</span>-->
+    <!--          </a>-->
+
+    <!--          <a *ngIf="link.children && link.children.length>0" (click)="toggleExpanded(link)" class="flex items-center h-12 mt-2 rounded hover:bg-gray-600 hover:text-gray-300 relative" [ngClass]="{'justify-center w-12': isMinimized, 'w-full px-3': !isMinimized}" routerLinkActive="text-white bg-gray-700 border-solid border border-blue-100">-->
+    <!--            <mat-icon class="w-6 h-6 stroke-current">{{ link.icon }}</mat-icon>-->
+    <!--            <span class="ml-2 text-sm font-medium" *ngIf="!isMinimized">{{ link.title }}</span>-->
+    <!--            <ng-container *ngIf="!isMinimized">-->
+    <!--              <mat-icon  class="ml-auto absolute right-2" [ngClass]="{'rotate-180': link.expanded}">expand_more</mat-icon>-->
+    <!--            </ng-container>-->
+    <!--          </a>-->
+
+    <!--          <div *ngIf="link.children && link.expanded" class="w-full mt-2" [ngClass]="{'pl-0': isMinimized, 'ml-12 pl-2 border-l border-gray-500': !isMinimized}">-->
+    <!--            <div class="relative"*ngFor="let childLink of link.children">-->
+    <!--              <div *ngIf="!isMinimized" class="w-6 h-6 bg-gray-900 rounded-full absolute -ml-5 top-1/3 pl-1 pt-0.5">-->
+    <!--                <mat-icon class="text-gray-300 text-sm">adjust</mat-icon>-->
+    <!--              </div>-->
+
+    <!--              <a [routerLink]="childLink.url" class="flex items-center h-12 mb-1 rounded hover:bg-gray-600 hover:text-gray-300" [ngClass]="{'justify-center w-12 ml-[8px]': isMinimized, 'w-36 ml-2 px-2': !isMinimized}" routerLinkActive="text-white bg-gray-700 border-solid border border-blue-100">-->
+    <!--                <mat-icon class="w-6 h-6 stroke-current">{{ childLink.icon }}</mat-icon>-->
+    <!--                <span class="ml-2 text-xs font-medium" *ngIf="!isMinimized">{{ childLink.title }}</span>-->
+    <!--              </a>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--        </cdk-virtual-scroll-viewport>-->
+    <!--      </div>-->
+    <!--    </ng-scrollbar>-->
+  </div>
+</div>
+
+

@@ -1,0 +1,97 @@
+
+
+<button type="button" matTooltip="ADD PARENT" (click)="openAddLevel()" class="float-right mx-2 p2 w-6 h-6 container items-center justify-center flex bg-blue-500 text-white rounded-md outline-none shadow-lg transform active:scale-75 transition-transform">
+  <mat-icon class="h-6 w-6">add</mat-icon>
+</button>
+
+<ul class="tree my-2">
+  <li class="parent">
+    <details>
+      <summary class="text-xl text-slate-600 font-thin" (contextmenu)="open($event, 'Doshi'); $event. preventDefault();"> Doshi </summary>
+      <ul>
+        <li  class="container items-center flex group/item hover:bg-slate-200 ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Accounting</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">HR</div>
+        </li>
+        <li  class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Manufacturing</div>
+        </li>
+        <li  class="">
+<!--          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Football</div>-->
+          <details>
+            <summary class="text-lg text-slate-600 font-thin">IT</summary>
+            <ul>
+              <li class="container items-center flex group/item hover:bg-slate-200 ">
+                <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Software Development</div>
+              </li>
+              <li class="container items-center flex group/item hover:bg-slate-200  ">
+                <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Network Engineer</div>
+              </li>
+              <li class="container items-center flex group/item hover:bg-slate-200  ">
+                <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">System Engineer</div>
+              </li>
+              <li class="container items-center flex group/item hover:bg-slate-200  ">
+                <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Support Desk</div>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li class="parent">
+    <details>
+      <summary class="text-xl text-slate-600 font-thin" >Doshi Steel</summary>
+      <ul>
+        <li class="container items-center flex group/item hover:bg-slate-200 ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Music</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Movies</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Swimming</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Football</div>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li class="parent">
+<!--    <div class="text-xl font-medium text-slate-600">Doshi Hardware</div>-->
+    <details>
+      <summary class="text-xl text-slate-600 font-thin">Doshi Steel</summary>
+      <ul>
+        <li class="container items-center flex group/item hover:bg-slate-200 ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Music</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Movies</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Swimming</div>
+        </li>
+        <li class="container items-center flex group/item hover:bg-slate-200  ">
+          <mat-icon class="text-gray-500">folder</mat-icon> <div class=" mx-3 text-slate-600 font-thin text-lg">Football</div>
+        </li>
+      </ul>
+    </details>
+
+<!--    <div class="-ml-2 container items-center flex">-->
+<!--     <mat-icon class="text-gray-500 ">folder</mat-icon> <div class=" mx-2 text-slate-600 font-thin text-lg">Doshi Hardware</div>-->
+<!--    </div>-->
+  </li>
+</ul>
+
+<ng-template #userMenu let-refId>
+  <div class="bg-white">
+    <ul class="list-none p-0 m-0 w-full">
+      <li class="container items-center flex group/item hover:bg-slate-200 w-full p-2 ">Add Org Level</li>
+      <li class="container items-center flex group/item hover:bg-slate-200 w-full p-2 " (click)="delete(refId)">remove Org Level</li>
+      <li class="container items-center flex group/item hover:bg-slate-200 w-full p-2">Update Org Level</li>
+    </ul>
+  </div>
+</ng-template>
